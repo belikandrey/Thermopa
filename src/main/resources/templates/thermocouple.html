@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Thermopa Thermocouple</h1>
+<div>
+    <form method="post" action="/app/calculate-thermocouple">
+        <div>
+            <label> Тип термопары
+                <select name="type" id="type">
+                    <option th:selected="${type==0}" value="0">TMK-M</option>
+                    <option th:selected="${type==1}" value="1">TЖК-J</option>
+                    <option th:selected="${type==2}" value="2">ТПП13-R</option>
+                    <option th:selected="${type==3}" value="3">ТПП10-S</option>
+                    <option th:selected="${type==4}" value="4">ТПР-В</option>
+                    <option th:selected="${type==5}" value="5">ТМК-Т</option>
+                    <option th:selected="${type==6}" value="6">ТНН-N</option>
+                    <option th:selected="${type==7}" value="7">ТХА-К</option>
+                    <option th:selected="${type==8}" value="8">ТХКн-Е</option>
+                    <option th:selected="${type==9}" value="9">ТХК-L</option>
+                    <option th:selected="${type==10}" value="10">А-1/А-2/А-3</option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label> ТЭДС, мВ
+                От
+                <input th:value="${fromEds}" type="text" name="fromEds">
+                До
+                <input th:value="${toEds}" disabled name="toEds">
+            </label>
+        </div>
+        <br>
+        <div>
+            <label> Температура, С
+                От
+                <input th:value="${fromT}" type="text" name="fromT">
+                До
+                <input disabled th:value="${toT}" type="text" name="toT">
+            </label>
+        </div>
+        <br>
+        <input type="submit" value="Вычислить">
+    </form>
+    <div>
+        <span th:text="${message}" style="color: red"></span>
+    </div>
+</div>
+</body>
+</html>

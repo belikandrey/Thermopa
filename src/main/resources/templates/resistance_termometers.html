@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Thermopa Resistance Thermometers</h1>
+<div>
+    <form method="post" action="/app/calculate-resistance-thermometers">
+        <div>
+            <label> Тип ТС
+                <select name="type" id="type">
+                    <option th:selected="${type==0}" value="0">Платиновые ТС, 385</option>
+                    <option th:selected="${type==1}" value="1">Платиновые ТС, 391</option>
+                    <option th:selected="${type==2}" value="2">Медные ТС</option>
+                    <option th:selected="${type==3}" value="3">Никелевые ТС</option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div>
+            <label> Температура , С:
+                От
+                <input th:value="${fromT}" type="text" name="fromT">
+                До
+                <input th:value="${toT}" disabled name="toT">
+            </label>
+        </div>
+        <br>
+        <div>
+            <label> R0, Ом:
+                <input th:value="${r0}" type="text" name="r0">
+            </label>
+            <label> Rt, Ом:
+                От
+                <input th:value="${fromRt}" type="text" name="fromRt">
+                До
+                <input th:value="${toRt}" disabled type="text" name="toRt">
+            </label>
+        </div>
+        <br>
+        <input type="submit" value="Вычислить">
+    </form>
+    <div>
+        <span th:text="${message}" style="color: red"></span>
+    </div>
+</div>
+</body>
+</html>
