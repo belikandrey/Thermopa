@@ -11,7 +11,9 @@ public enum Type {
     TXA_K("TXA-K"),
     TXKH_E("TXKн-E"),
     TXK_L("TXK-L"),
-    A1_A2_A3("A-1/A-2/A-3");
+    A1("A-1"),
+    A2("A-2"),
+    A3("A-3");
 
     private final String label;
 
