@@ -18,10 +18,10 @@ public class ThermocoupleCalculator implements ThermopaCalculator {
         Type type = (Type) params.get("type");
         Double fromT = (Double) params.get("fromT");
 
-        return new CalculatorResult(getEds(type, fromEds, fromT), getTemperature(type, fromT));
+        return new CalculatorResult(getEds(type, fromT), getTemperature(type, fromT));
     }
 
-    private double getEds(Type type, Double fromEds, Double fromT){
+    private double getEds(Type type, Double fromT){
         List<Double> variables = new ArrayList<>();
         switch (type) {
             case TMK_M:
@@ -299,7 +299,12 @@ public class ThermocoupleCalculator implements ThermopaCalculator {
                 }
                 break;
         }
-        return 0;//FIXME ты не сказал какую формулу юзать
+        int power = 0;
+        double result = 0;
+        for (Double var : variables){
+            result += var * Math.pow(fromT, power++);
+        }
+        return result;
     }
 
     private double getTemperature(Type type, Double fromT){

@@ -41,7 +41,11 @@ public class ApplicationController {
     }
 
     @GetMapping("/thermocouple")
-    public String toThermocouple() {
+    public String toThermocouple(Model model) {
+        model.addAttribute("type", Type.A1);
+        model.addAttribute("fromEds", 0);
+        model.addAttribute("fromT", 0);
+
         return "thermocouple";
     }
 
