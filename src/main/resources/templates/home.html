@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/sample.js}"></script>
 </head>
 <body>
 <h1>Welcome to Thermopa!</h1>
 <h2><a href="/app/thermocouple">RCT</a></h2>
+<button onclick="showAlert()"></button>
+<img th:src="@{/image/diagram.png}">
 </body>
 
 </html>
