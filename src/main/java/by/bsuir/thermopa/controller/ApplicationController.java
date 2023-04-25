@@ -45,6 +45,7 @@ public class ApplicationController {
         model.addAttribute("type", Type.A1);
         model.addAttribute("fromEds", 0);
         model.addAttribute("fromT", 0);
+        model.addAttribute("coldJunctionT", 0);
 
         return "thermocouple";
     }
@@ -55,17 +56,20 @@ public class ApplicationController {
             final int type = Integer.parseInt(params.getFirst("type") != null ? params.getFirst("type") : "0");
             final double fromEds = Double.parseDouble(params.getFirst("fromEds") != null ? params.getFirst("fromEds") : "0");
             final double fromT = Double.parseDouble(params.getFirst("fromT") != null ? params.getFirst("fromT") : "0");
+            final double coldJunctionT = Double.parseDouble(params.getFirst("coldJunctionT") != null ? params.getFirst("coldJunctionT") : "0");
             final Type thermocoupleType = Type.values()[type];
             Map<String, Object> paramsToCalculator = new HashMap<>();
             paramsToCalculator.put("type", thermocoupleType);
             paramsToCalculator.put("fromEds", fromEds);
             paramsToCalculator.put("fromT", fromT);
+            paramsToCalculator.put("coldJunctionT", coldJunctionT);
             final CalculatorResult calculatorResult = thermocoupleCalculator.calculate(paramsToCalculator);
             model.addAttribute("toEds", String.format("%.5f", calculatorResult.getY()));
             model.addAttribute("toT", String.format("%.5f", calculatorResult.getX()));
             model.addAttribute("fromEds", fromEds);
             model.addAttribute("fromT", fromT);
             model.addAttribute("type", type);
+            model.addAttribute("coldJunctionT", coldJunctionT);
         } catch (InvalidDataException e) {
             model.addAttribute("message", e.getMessage());
         } catch (NumberFormatException e) {
